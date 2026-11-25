@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Кетоны</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;600&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#15123A;--ink:#F1EEFF;--mut:#A9A3E0;--red:#FF5A5F}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 clamp(18px,1.7vw,28px)/1.5 Onest,system-ui,sans-serif;overflow:hidden;transition:background .8s,color .8s}
+body[data-t=light]{--bg:#ECE9FF;--ink:#15123A;--mut:#4F48A0;--red:#D12B33}
+body[data-t=hi]{--bg:#F2E94E;--ink:#15123A;--mut:#15123A;--red:#15123A}
+canvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;cursor:grab}
+.slide{position:absolute;inset:0;padding:8vh 7vw 10vh;display:flex;flex-direction:column;justify-content:center;opacity:0;visibility:hidden;transition:opacity .6s,visibility .6s;z-index:1;pointer-events:none}
+.slide.on{opacity:1;visibility:visible}
+.a{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--d,0)*.14s + .2s)}
+.on .a{opacity:1;transform:none}
+h1,h2{font-family:Unbounded,Onest,sans-serif;margin:0;letter-spacing:-.02em}
+h1{font-weight:700;font-size:clamp(56px,10.5vw,190px);line-height:.95}
+h2{font-weight:500;font-size:clamp(28px,4.2vw,70px);line-height:1.08;margin-bottom:.7em;max-width:16em}
+p{margin:0 0 .6em;max-width:30em}
+.mut{color:var(--mut)}
+.f{font-weight:600;font-size:clamp(36px,7vw,120px);line-height:1.1;margin:.2em 0 .4em;letter-spacing:-.01em}
+.f b{color:var(--red);font-weight:600}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:3vw;max-width:80em}
+.col{border-left:3px solid var(--red);padding-left:1.4vw}
+.col.t{border-color:var(--mut)}
+.col h3{font:600 clamp(20px,2.2vw,36px)/1.2 Onest,sans-serif;margin:0 0 .3em}
+.col .fm{font-weight:600;font-size:clamp(22px,2.6vw,44px);margin-bottom:.35em;color:var(--red)}
+.col p{font-size:.92em}
+.hint{position:fixed;left:7vw;bottom:4vh;font-size:.7em;color:var(--mut);z-index:2;transition:opacity .6s}
+.bar{position:fixed;left:0;bottom:0;height:5px;background:var(--red);width:0;z-index:3;transition:width .6s cubic-bezier(.2,.7,.2,1),background .8s}
+.nav{position:fixed;right:5vw;bottom:3vh;z-index:3;display:flex;gap:.6em;align-items:center;font-size:.8em}
+.nav button{font:inherit;color:var(--ink);background:transparent;border:2px solid currentColor;border-radius:50%;width:2.4em;height:2.4em;cursor:pointer;transition:transform .2s,background .2s}
+.nav button:hover{background:var(--red);color:var(--bg);border-color:var(--red);transform:scale(1.08)}
+.nav button:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{transition-duration:.01s!important;transition-delay:0s!important}}
+</style>
+</head>
+<body data-t="dark">
+<canvas id="c" aria-hidden="true"></canvas>
+
+<!-- 1. Титульный -->
+<section class="slide on">
+  <h1 class="a" style="--d:0">Кетоны</h1>
+  <p class="a mut" style="--d:2;margin-top:1.2em">Органическая химия · открытый урок</p>
+  <p class="a mut" style="--d:3;font-size:.8em">Молекулу можно вращать мышью или пальцем</p>
+</section>
+
+<!-- 2. Определение -->
+<section class="slide">
+  <h2 class="a" style="--d:0">Карбонильная группа внутри цепи</h2>
+  <div class="f a" style="--d:1">R–C<b>(=O)</b>–R′</div>
+  <p class="a" style="--d:2">Атом углерода с двойной связью с кислородом соединён с двумя углеводородными радикалами.</p>
+</section>
+
+<!-- 3. Кетоны и альдегиды -->
+<section class="slide" data-theme="light">
+  <h2 class="a" style="--d:0">Кетон или альдегид</h2>
+  <div class="cols">
+    <div class="col t a" style="--d:1"><div class="fm" style="color:var(--mut)">R–CHO</div><h3>Альдегид</h3><p>Группа на конце цепи, есть атом водорода. Легко окисляется и даёт «серебряное зеркало».</p></div>
+    <div class="col a" style="--d:2"><div class="fm">R–CO–R′</div><h3>Кетон</h3><p>Группа внутри цепи. Мягкими окислителями не окисляется, зеркала нет.</p></div>
+  </div>
+</section>
+
+<!-- 4. Примеры -->
+<section class="slide">
+  <h2 class="a" style="--d:0">Примеры</h2>
+  <div class="cols">
+    <div class="col a" style="--d:1"><div class="fm">CH₃–CO–CH₃</div><h3>Ацетон</h3><p>Простейший кетон, популярный растворитель.</p></div>
+    <div class="col a" style="--d:2"><div class="fm">CH₃–CO–C₂H₅</div><h3>Бутанон</h3><p>Метилэтилкетон, тоже растворитель.</p></div>
+    <div class="col a" style="--d:3"><div class="fm">C₆H₁₀O</div><h3>Циклогексанон</h3><p>Сырьё для капролактама и нейлона.</p></div>
+  </div>
+</section>
+
+<!-- 5. Реакции -->
+<section class="slide">
+  <h2 class="a" style="--d:0">Что умеют кетоны</h2>
+  <div class="cols">
+    <div class="col a" style="--d:1"><h3>Восстановление</h3><p>H₂ на катализаторе или NaBH₄ превращают кетон во вторичный спирт.</p></div>
+    <div class="col a" style="--d:2"><h3>Присоединение</h3><p>HCN даёт циангидрины. Реагируют NH₂OH, N₂H₄ и реактивы Гриньяра.</p></div>
+    <div class="col a" style="--d:3"><h3>Йодоформная проба</h3><p>Положительна у метилкетонов R–CO–CH₃.</p></div>
+  </div>
+</section>
+
+<!-- 6. Получение -->
+<section class="slide">
+  <h2 class="a" style="--d:0">Как получают</h2>
+  <div class="cols">
+    <div class="col a" style="--d:1"><h3>Окисление спиртов</h3><p>Вторичные спирты окисляются до кетонов.</p></div>
+    <div class="col a" style="--d:2"><h3>Реакция Кучерова</h3><p>Гидратация алкинов. Ацетилен даёт альдегид, остальные алкины дают кетоны.</p></div>
+    <div class="col a" style="--d:3"><h3>Кумольный способ</h3><p>Ацетон образуется вместе с фенолом.</p></div>
+  </div>
+</section>
+
+<!-- 7. Итог -->
+<section class="slide" data-theme="hi">
+  <h2 class="a" style="--d:0">Главное</h2>
+  <p class="a" style="--d:1;font-size:1.5em">Кетон: группа C=O внутри цепи.</p>
+  <p class="a" style="--d:2;font-size:1.5em">Не даёт «серебряное зеркало».</p>
+  <p class="a" style="--d:3;font-size:1.5em">Восстанавливается до вторичного спирта.</p>
+</section>
+
+<div class="hint" id="hint">← → или пробел</div>
+<div class="bar" id="bar"></div>
+<div class="nav"><button id="prev" aria-label="Назад">←</button><span id="ct"></span><button id="next" aria-label="Вперёд">→</button></div>
+
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide')),n=slides.length,cur=0;
+  var bar=document.getElementById('bar'),ct=document.getElementById('ct'),hint=document.getElementById('hint');
+  // состояние молекулы на каждом слайде: x, y, масштаб, прозрачность, подсветка C=O
+  var S=[[.74,.5,1.25,1,0],[.78,.5,1.05,1,1],[.5,.5,2.4,.08,0],[.88,.17,.5,.9,0],[.9,.86,.45,.9,0],[.9,.17,.45,.9,0],[.5,.5,2.6,.1,0]];
+  function go(i){
+    cur=Math.max(0,Math.min(n-1,i));
+    slides.forEach(function(s,k){s.classList.toggle('on',k===cur)});
+    document.body.dataset.t=slides[cur].dataset.theme||'dark';
+    bar.style.width=((cur+1)/n*100)+'%';
+    ct.textContent=(cur+1)+' / '+n;
+    hint.style.opacity=cur===0?1:0;
+  }
+  document.getElementById('next').onclick=function(e){e.stopPropagation();go(cur+1)};
+  document.getElementById('prev').onclick=function(e){e.stopPropagation();go(cur-1)};
+  addEventListener('keydown',function(e){
+    if(['ArrowRight','ArrowDown','PageDown',' '].indexOf(e.key)>-1){e.preventDefault();go(cur+1)}
+    if(['ArrowLeft','ArrowUp','PageUp'].indexOf(e.key)>-1){e.preventDefault();go(cur-1)}
+    if(e.key==='Home')go(0); if(e.key==='End')go(n-1);
+  });
+
+  // ---------- молекула ацетона (3D) ----------
+  var cv=document.getElementById('c'),ctx=cv.getContext('2d'),W,H,dpr;
+  function size(){dpr=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}
+  addEventListener('resize',size);size();
+
+  var cc=1.52,co=1.22,ch=1.09,s60=Math.sin(Math.PI/3),c60=.5;
+  var atoms=[{e:'C',p:[0,0,0]},{e:'O',p:[0,co,0]},{e:'C',p:[-cc*s60,-cc*c60,0]},{e:'C',p:[cc*s60,-cc*c60,0]}];
+  var bonds=[[0,1,2],[0,2,1],[0,3,1]];
+  function methylH(ci){
+    var c=atoms[ci].p,l=Math.hypot(c[0],c[1]),a=[c[0]/l,c[1]/l,0],u=[0,0,1],v=[a[1],-a[0],0];
+    for(var k=0;k<3;k++){
+      var f=k*2*Math.PI/3,cs=Math.cos(70.5*Math.PI/180),sn=Math.sin(70.5*Math.PI/180),d=[];
+      for(var q=0;q<3;q++)d[q]=a[q]*cs+sn*(Math.cos(f)*u[q]+Math.sin(f)*v[q]);
+      atoms.push({e:'H',p:[c[0]+ch*d[0],c[1]+ch*d[1],c[2]+ch*d[2]]});
+      bonds.push([ci,atoms.length-1,1]);
+    }
+  }
+  methylH(2);methylH(3);
+
+  var COL={C:['#BDB7FF','#5A50C8'],O:['#FF9A9C','#D12B33'],H:['#FFFFFF','#B5B0E0']},RAD={C:.42,O:.4,H:.24};
+  var st=S[0].slice(),ay=0,ax=-.35,vy=.006,drag=false,lx=0,ly=0,t0=0;
+  var calm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  cv.addEventListener('pointerdown',function(e){drag=true;lx=e.clientX;ly=e.clientY});
+  addEventListener('pointerup',function(){drag=false});
+  addEventListener('pointermove',function(e){
+    if(!drag)return; ay+=(e.clientX-lx)*.01;ax+=(e.clientY-ly)*.01;ax=Math.max(-1.3,Math.min(1.3,ax));lx=e.clientX;ly=e.clientY;
+  });
+  // свайп по слайдам
+  var sx=null;
+  addEventListener('touchstart',function(e){sx=e.touches[0].clientX},{passive:true});
+  addEventListener('touchend',function(e){if(sx===null)return;var dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>60)go(cur+(dx<0?1:-1));sx=null});
+
+  function tr(p){
+    var x1=p[0]*Math.cos(ay)+p[2]*Math.sin(ay),z1=-p[0]*Math.sin(ay)+p[2]*Math.cos(ay);
+    var y2=p[1]*Math.cos(ax)-z1*Math.sin(ax),z2=p[1]*Math.sin(ax)+z1*Math.cos(ax);
+    return [x1,y2,z2];
+  }
+  function frame(t){
+    if(!t0)t0=t;
+    var tg=S[cur];for(var i=0;i<5;i++)st[i]+=(tg[i]-st[i])*.06;
+    if(!drag&&!calm)ay+=vy;
+    ctx.clearRect(0,0,W,H);
+    if(st[3]>.01){
+      var U=Math.min(W,H)*.15*st[2],cx=W*st[0],cy=H*st[1],pulse=.5+.5*Math.sin((t-t0)/320),hl=st[4];
+      var P=atoms.map(function(a){var q=tr(a.p),s=6/(6-q[2]);return{x:cx+q[0]*U*s,y:cy-q[1]*U*s,z:q[2],s:s,e:a.e}});
+      var items=[];
+      bonds.forEach(function(b){var A=P[b[0]],B=P[b[1]];items.push({k:'b',z:(A.z+B.z)/2-.01,A:A,B:B,o:b[2]})});
+      P.forEach(function(p){items.push({k:'a',z:p.z,p:p})});
+      items.sort(function(a,b){return a.z-b.z});
+      ctx.globalAlpha=st[3];
+      items.forEach(function(it){
+        if(it.k==='b'){
+          var A=it.A,B=it.B,dx=B.x-A.x,dy=B.y-A.y,l=Math.hypot(dx,dy)||1,nx=-dy/l,ny=dx/l,off=it.o===2?U*.09:0,s=(A.s+B.s)/2;
+          ctx.lineCap='round';ctx.lineWidth=U*.09*s;
+          var hot=it.o===2&&hl>.05;
+          ctx.strokeStyle=hot?'#FF5A5F':'rgba(241,238,255,.6)';
+          ctx.shadowColor='#FF5A5F';ctx.shadowBlur=hot?(20+40*pulse)*hl:0;
+          var offs=it.o===2?[-off,off]:[0];
+          offs.forEach(function(o){ctx.beginPath();ctx.moveTo(A.x+nx*o,A.y+ny*o);ctx.lineTo(B.x+nx*o,B.y+ny*o);ctx.stroke()});
+          ctx.shadowBlur=0;
+        }else{
+          var p=it.p,r=RAD[p.e]*U*p.s,g=ctx.createRadialGradient(p.x-r*.35,p.y-r*.35,r*.1,p.x,p.y,r);
+          g.addColorStop(0,COL[p.e][0]);g.addColorStop(1,COL[p.e][1]);
+          ctx.shadowColor='#FF5A5F';ctx.shadowBlur=(p.e==='O'&&hl>.05)?(20+50*pulse)*hl:0;
+          ctx.fillStyle=g;ctx.beginPath();ctx.arc(p.x,p.y,r,0,7);ctx.fill();ctx.shadowBlur=0;
+        }
+      });
+      ctx.globalAlpha=1;
+    }
+    requestAnimationFrame(frame);
+  }
+  go(0);requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
